@@ -11,8 +11,8 @@ class MockUserRepository implements IUserRepository{
     this.users = [];
   }
 
-  async findByEmail(email: string): Promise<User|undefined> {
-    return this.users.find((user) => user.email === email);
+  async findByEmail(email: string): Promise<User|null> {
+    return this.users.find((user) => user.email === email) ?? null;
   }
 
   async create(data: IUserInputDto): Promise<User> {

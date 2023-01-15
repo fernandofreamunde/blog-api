@@ -1,7 +1,16 @@
 import 'dotenv/config';
-import express from "express";
+import express, { Router } from "express";
+import { userRouter } from './modules/users/infrastructure/UserRouter';
 
 const app = express();
+
+app.use(express.json());
+
+const router = Router();
+
+router.use(userRouter);
+
+app.use(router);
 
 app.get('/', (request, response) => {
   

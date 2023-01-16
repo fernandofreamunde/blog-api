@@ -1,5 +1,7 @@
 import 'dotenv/config';
 import express, { Router } from "express";
+import 'express-async-errors';
+import { ErrorMiddleware } from './core/middleware/ErrorMiddleware';
 import { userRouter } from './modules/users/infrastructure/UserRouter';
 
 const app = express();
@@ -16,5 +18,7 @@ app.get('/', (request, response) => {
   
   return response.status(200).json({message: 'hello World'});
 });
+
+app.use(ErrorMiddleware);
 
 export { app };

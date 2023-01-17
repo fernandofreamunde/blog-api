@@ -1,3 +1,4 @@
+import { AppError } from "../../../../core/error/AppError";
 import { MockUserRepository } from "../../../../modules/users/infrastructure/MockUserRepository";
 import { CreateUserUseCase } from "./CreateUserUseCase";
 
@@ -25,7 +26,7 @@ describe("Create User UseCase", () => {
     // TODO: make this more specific.
     expect(async () => {
       const result = await useCase.execute({ name: 'Johnny', password: 'password', email: 'john.doe@example.com' });
-    }).rejects.toBeInstanceOf(Error);
+    }).rejects.toBeInstanceOf(AppError);
   });
   
 });

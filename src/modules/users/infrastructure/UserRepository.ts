@@ -45,6 +45,17 @@ class UserRepository implements IUserRepository {
       },
     });
   }
+
+  async update(user: User): Promise<User> {
+    user.updated_at = new Date();
+
+    return await this.prisma.user.update({
+      data: user,
+      where: {
+        id: user.id
+      }
+    });
+  }
 }
 
 export { UserRepository };

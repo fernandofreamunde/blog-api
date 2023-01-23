@@ -44,6 +44,20 @@ class MockUserRepository implements IUserRepository{
 
     return user;
   }
+
+  async update(user: User): Promise<User> {
+    const existingUser = await this.findById(user.id);
+
+    if (!existingUser) {
+      throw new Error("User not found.");
+    }
+    
+    const index = this.users.indexOf(existingUser);
+
+    this.users[index] = user;
+
+    return user;
+  }
 }
 
 export { MockUserRepository };

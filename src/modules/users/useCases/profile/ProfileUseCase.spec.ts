@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import makeUser from "../../../../modules/users/factory/UserFactory";
 import { MockUserRepository } from "../../infrastructure/MockUserRepository";
 import { ProfileUseCase } from "./ProfileUseCase";
@@ -8,7 +9,7 @@ describe("User Profile UseCase", () => {
     const repo = new MockUserRepository();
     const useCase = new ProfileUseCase(repo);
 
-    const user = await makeUser({repo, data: {email: 'john.doe@example.com'}});
+    const user = await makeUser({repo, data: {email: 'john.doe@example.com'}}) as User;
 
     const result = await useCase.execute({ user_id: user.id });
 

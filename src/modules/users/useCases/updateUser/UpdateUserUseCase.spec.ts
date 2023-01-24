@@ -1,4 +1,5 @@
 import { faker } from "@faker-js/faker";
+import { User } from "@prisma/client";
 import { AppError } from "../../../../core/error/AppError";
 import makeUser from "../../../../modules/users/factory/UserFactory";
 import { MockUserRepository } from "../../../../modules/users/infrastructure/MockUserRepository";
@@ -10,7 +11,7 @@ describe("Update User UseCase", () => {
     const repo = new MockUserRepository();
     const useCase = new UpdateUserUseCase(repo);
 
-    const user = await makeUser({repo, data: {}});
+    const user = await makeUser({repo, data: {}}) as User;
     const bio = faker.lorem.sentences(2);
 
     const result = await useCase.execute({
@@ -33,7 +34,7 @@ describe("Update User UseCase", () => {
 
     const bio = faker.lorem.sentences(2);
     await makeUser({repo, data: { name: 'John', email: 'john.doe@example.com' }});
-    const user = await makeUser({repo, data: {}});
+    const user = await makeUser({repo, data: {}}) as User;
 
     // TODO: make this more specific.
     expect(async () => {
@@ -53,7 +54,7 @@ describe("Update User UseCase", () => {
     const useCase = new UpdateUserUseCase(repo);
 
     const bio = faker.lorem.sentences(2);
-    const user = await makeUser({repo, data: {}});
+    const user = await makeUser({repo, data: {}}) as User;
 
     // TODO: make this more specific.
     expect(async () => {
@@ -73,8 +74,8 @@ describe("Update User UseCase", () => {
     const useCase = new UpdateUserUseCase(repo);
 
     const bio = faker.lorem.sentences(2);
-    const otherUser = await makeUser({repo, data: { name: 'John', email: 'john.doe@example.com' }});
-    const user = await makeUser({repo, data: {}});
+    const otherUser = await makeUser({repo, data: { name: 'John', email: 'john.doe@example.com' }}) as User;
+    const user = await makeUser({repo, data: {}}) as User;
 
     // TODO: make this more specific.
     expect(async () => {

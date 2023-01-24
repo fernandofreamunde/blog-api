@@ -1,4 +1,5 @@
 import { faker } from "@faker-js/faker";
+import { User } from "@prisma/client";
 import { hash } from "bcrypt";
 import { IUserRepository } from "../contracts/IUserRepository";
 
@@ -12,7 +13,7 @@ interface IMakeAccount {
   repo: IUserRepository
 }
 
-export default async function makeUser({data, repo}:IMakeAccount) {
+export default async function makeUser({data, repo}:IMakeAccount): Promise<User | null> {
   const {
     name,
     email,

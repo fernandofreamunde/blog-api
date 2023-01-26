@@ -12,7 +12,7 @@ class CreateBlogUseCase {
     const existingBlog = await this.repo.findByOwnerId(owner);
 
     if (existingBlog) {
-      throw new AppError('UserAlready has a Blog.');
+      throw new AppError('User already has a Blog.');
     }
 
     const blog = await this.repo.create({ description, name, owner });

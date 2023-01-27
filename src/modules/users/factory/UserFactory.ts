@@ -4,13 +4,13 @@ import { hash } from "bcrypt";
 import { IUserRepository } from "../contracts/IUserRepository";
 
 interface IUserSeed {
-  name?: string,
+  name?: string;
   email?: string;
 }
 
 interface IMakeAccount {
   data: IUserSeed;
-  repo: IUserRepository
+  repo: IUserRepository;
 }
 
 export default async function makeUser({data, repo}:IMakeAccount): Promise<User | null> {

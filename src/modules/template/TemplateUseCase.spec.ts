@@ -1,5 +1,10 @@
 
 describe("Template test", () => {
+
+  beforeEach(() => {
+    // setup the usecase etc..
+  });
+
   it('should check the logic', async () => {
       expect(true).toBeTruthy();
   });

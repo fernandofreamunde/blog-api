@@ -10,8 +10,6 @@ class UpdateBlogUseCase {
   // for now we do not do settings but may be needed in the future... 
   async execute({ id, description, name, owner }:IBlogUpdateDto): Promise<Blog> {
 
-    console.log(id);
-    console.log(owner);
     const blog = await this.repo.findById(id);
 
     if (!blog) {

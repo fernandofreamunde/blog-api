@@ -23,22 +23,20 @@ describe("Create Article test", () => {
 
     const blog = await makeBlog({data:{ owner_id: 'some-fake-uuid-0001' }, repo: blogRepo});
     const title = faker.lorem.words(5);
-    const body = {
-      content: [
-        {
-          type: 'paragraph',
-          content: faker.lorem.paragraph(),
-          metadata: [],
-          translations: [
-            {
-              language: 'pt_pt',
-              content: faker.lorem.paragraph(),
-              metadata: [],
-            }
-          ]
-        }
-      ]
-    }
+    const body = [
+      {
+        type: 'paragraph',
+        content: faker.lorem.paragraph(),
+        metadata: [],
+        translations: [
+          {
+            language: 'pt_pt',
+            content: faker.lorem.paragraph(),
+            metadata: [],
+          }
+        ]
+      }
+    ];
 
     const newArticle = await useCase.execute({blog: blog.id, author: 'some-fake-uuid-0001', body, title, published_at: null})
     expect(newArticle.body).toEqual(body);
@@ -77,22 +75,20 @@ describe("Create Article test", () => {
   it('should not allow to create an article on a blog that user does not own', async () => {
     const blog = await makeBlog({data:{ owner_id: 'some-fake-uuid-0001' }, repo: blogRepo});
     const title = faker.lorem.words(5);
-    const body = {
-      content: [
-        {
-          type: 'paragraph',
-          content: faker.lorem.paragraph(),
-          metadata: [],
-          translations: [
-            {
-              language: 'pt_pt',
-              content: faker.lorem.paragraph(),
-              metadata: [],
-            }
-          ]
-        }
-      ]
-    }
+    const body = [
+      {
+        type: 'paragraph',
+        content: faker.lorem.paragraph(),
+        metadata: [],
+        translations: [
+          {
+            language: 'pt_pt',
+            content: faker.lorem.paragraph(),
+            metadata: [],
+          }
+        ]
+      }
+    ];
     
     expect(async () => {
       const newArticle = await useCase.execute({blog: blog.id, author: 'some-fake-uuid-0002', body, title, published_at: null})

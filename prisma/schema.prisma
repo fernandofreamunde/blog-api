@@ -20,8 +20,10 @@ model User {
   status     String   @default("inactive")
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
-  Token      Token[]
-  Blog       Blog[]
+
+  Token    Token[]
+  Blog     Blog[]
+  Articles Article[]
 
   @@map("users")
 }
@@ -39,15 +41,30 @@ model Token {
 }
 
 model Blog {
-  id          String   @id @default(uuid())
+  id          String    @id @default(uuid())
   name        String
   owner       String
   description String
   settings    Json
-  created_at  DateTime @default(now())
+  created_at  DateTime  @default(now())
   updated_at  DateTime
+  Articles    Article[]
 
   user User @relation(fields: [owner], references: [id])
 
   @@map("blogs")
+}
+
+model Article {
+  id           String    @id @default(uuid())
+  title        String
+  body         Json
+  created_at   DateTime  @default(now())
+  updated_at   DateTime
+  published_at DateTime?
+  author       String
+  blog         String
+
+  author_id User @relation(fields: [author], references: [id])
+  blog_id   Blog @relation(fields: [blog], references: [id])
 }

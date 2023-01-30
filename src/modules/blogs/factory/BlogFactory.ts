@@ -13,18 +13,18 @@ interface IMakeBlog {
   repo: IBlogRepository;
 }
 
-export default async function makeBlog({data, repo}:IMakeBlog): Promise<Blog | null> {
+export default async function makeBlog({data, repo}:IMakeBlog): Promise<Blog> {
   const {
     name,
     description, 
     owner_id
-  }= data;
+  } = data;
 
   const blog = await repo.create({
     description: description ?? faker.lorem.sentence(),
     name: name ?? faker.company.name(),
     owner: owner_id,
-  });
+  }) as Blog;
 
   return blog;
 }

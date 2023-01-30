@@ -56,12 +56,12 @@ model Blog {
 }
 
 model Article {
-  id           String   @id @default(uuid())
+  id           String    @id @default(uuid())
   title        String
   body         Json
-  created_at   DateTime @default(now())
+  created_at   DateTime  @default(now())
   updated_at   DateTime
-  published_at DateTime
+  published_at DateTime?
   author       String
   blog         String
 

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ArticleRepository } from "modules/blogs/infrastructure/ArticleRepository";
+import { ArticleRepository } from "../../../../modules/blogs/infrastructure/ArticleRepository";
 import { UpdateArticleUseCase } from "./UpdateArticleUseCase";
 
 class UpdateArticleController {

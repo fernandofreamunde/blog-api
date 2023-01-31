@@ -5,7 +5,7 @@ interface IArticleRepository {
   findById(id: string): Promise<Article | null>; 
   findByAuthorId(author: string): Promise<Article | null>; 
   create(data: IArticleCreationDto): Promise<Article>;
-  update(user: Article): Promise<Article>;
+  update(data: Article): Promise<Article>;
 }
 
 export { IArticleRepository };

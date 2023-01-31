@@ -13,7 +13,7 @@ interface IMakeAccount {
   repo: IUserRepository;
 }
 
-export default async function makeUser({data, repo}:IMakeAccount): Promise<User | null> {
+export default async function makeUser({data, repo}:IMakeAccount): Promise<User> {
   const {
     name,
     email,
@@ -25,7 +25,7 @@ export default async function makeUser({data, repo}:IMakeAccount): Promise<User 
     email: email ?? faker.internet.email(name),
     name: name ?? faker.name.firstName(),
     password
-  });
+  }) as User;
 
   return user;
 }

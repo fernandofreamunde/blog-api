@@ -4,13 +4,13 @@ import { IArticleCreationDto } from "../contracts/IArticleCreationDto";
 import { IArticleRepository } from "../contracts/IArticleRepository";
 
 class MockArticleRepository implements IArticleRepository {
-  
+
   articles: Article[];
 
   constructor() {
     this.articles = [];
   }
-  
+
   async findByAuthorId(author: string): Promise<Article | null> {
     return this.articles.find((article) => article.author === author) ?? null;
   }
@@ -26,7 +26,6 @@ class MockArticleRepository implements IArticleRepository {
     const updated_at = new Date();
     const publishedAt = published_at ?? null;
 
-    
     const article = {
       id,
       author,
@@ -49,12 +48,22 @@ class MockArticleRepository implements IArticleRepository {
     if (!existingArticle) {
       throw new Error("Article not found.");
     }
-    
+
     const index = this.articles.indexOf(existingArticle);
 
     this.articles[index] = article;
 
     return article;
+  }
+
+  async delete(article: Article): Promise<void> {
+    const articleIndex = this.articles.indexOf(article);
+
+    if (articleIndex === -1) {
+      return;
+    }
+
+    this.articles.splice(articleIndex, 1);
   }
 }
 

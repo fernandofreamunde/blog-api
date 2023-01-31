@@ -1,4 +1,4 @@
-import { Article, Blog, Prisma, PrismaClient } from "@prisma/client";
+import { Article, Prisma, PrismaClient } from "@prisma/client";
 import { IArticleCreationDto } from "../contracts/IArticleCreationDto";
 import { IArticleRepository } from "../contracts/IArticleRepository";
 
@@ -42,7 +42,6 @@ class ArticleRepository implements IArticleRepository {
     });
   }
 
-  // TODO: check on settings thing
   async update({ id, title, body, author, published_at, blog}: Article): Promise<Article> {
     const updated_at = new Date();
     const json = body as Prisma.JsonArray;

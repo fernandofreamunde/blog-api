@@ -21,6 +21,7 @@ describe("Create Article test", () => {
 
   it('should allow a user to create an article on a blog belonging to him', async () => {
 
+    // todo: replace this with a make user and set owner witht an actual user.
     const blog = await makeBlog({data:{ owner_id: 'some-fake-uuid-0001' }, repo: blogRepo});
     const title = faker.lorem.words(5);
     const body = [

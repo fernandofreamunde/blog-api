@@ -1,0 +1,77 @@
+{
+  // Place your blog-api workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+  // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+  // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+  // used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+  // Placeholders with the same ids are connected.
+  // Example:
+  "Controller": {
+    "scope": "typescript",
+    "prefix": "controller",
+    "body": [
+      "import { Request, Response } from \"express\";",
+      "\n",
+      "class $1 {",
+      "  async handle(request: Request, response: Response): Promise<Response<any, Record<string, any>>> {",
+      "\n",
+      "// replace this with tsrynge container to get UseCase instance",
+      "const usecase = new $2();",
+      "const result = await usecase.execute();",
+      "\n",
+      "return response.status(200).json({message: '$1'});",
+      "}",
+      "}",
+      "\n",
+      "export { $1 };",
+      ""
+    ],
+    "description": "Create Controller Boilerplate"
+  },
+  "useCase": {
+    "scope": "typescript",
+    "prefix": "usecase",
+    "body": [
+      "",
+      "class $1 {",
+      "",
+      "  constructor() {}",
+      "",
+      "  async execute(): Promise<void> {",
+      "",
+      "    $2",
+      "",
+      "    return;",
+      "  }",
+      "}",
+      "",
+      "export { $1 };",
+      "",
+    ],
+    "description": "Create UseCase Boilerplate"
+  },
+  "testFile": {
+    "scope": "typescript",
+    "prefix": "test",
+    "body": [
+      "describe(\"$1 test\", () => {",
+      "",
+      "  beforeEach(() => {",
+      "    // setup the usecase etc..",
+      "  });",
+      "",
+      "  it('should check the logic', async () => {",
+      "      expect(true).toBeTruthy();",
+      "  });",
+      "",
+      "  it('should check the negative cases too', async () => {",
+      "",
+      "    expect(true).toBeTruthy();",
+      "  });",
+      "",
+      "});",
+      "",
+    ],
+    "description": "Create test Boilerplate"
+  }
+}

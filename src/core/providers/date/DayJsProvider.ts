@@ -4,16 +4,16 @@ import { IDateProvider } from "./IDateProvider";
 
 dayjs.extend(utc)
 
-class DayjsDateProvider implements IDateProvider{
+class DayjsDateProvider implements IDateProvider {
 
-  compareDatesInHours(startDate: Date, endDate: Date ): number {
+  compareDatesInHours(startDate: Date, endDate: Date): number {
     const endDateUtc = this.convertToUtc(endDate);
     const startDateUtc = this.convertToUtc(startDate);
 
     return dayjs(endDateUtc).diff(startDateUtc, 'hours');
   }
 
-  convertToUtc(date: Date){
+  convertToUtc(date: Date) {
     return dayjs(date).utc().local().format();
   }
 
@@ -26,6 +26,10 @@ class DayjsDateProvider implements IDateProvider{
 
   addDays(date: Date, days: number): Date {
     return dayjs(date).add(days, 'days').toDate();
+  }
+
+  subtractDays(date: Date, days: number): Date {
+    return dayjs(date).subtract(days, 'days').toDate();
   }
 
   addHours(date: Date, hours: number): Date {

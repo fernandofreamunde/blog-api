@@ -2,13 +2,22 @@ import { Article } from "@prisma/client";
 import { v4 as uuidV4 } from "uuid";
 import { IArticleCreationDto } from "../contracts/IArticleCreationDto";
 import { IArticleRepository } from "../contracts/IArticleRepository";
+import { DayjsDateProvider } from "../../../core/providers/date/DayJsProvider";
+import { IDateProvider } from "../../../core/providers/date/IDateProvider";
 
 class MockArticleRepository implements IArticleRepository {
 
   articles: Article[];
+  dateProvider: IDateProvider;
 
   constructor() {
     this.articles = [];
+    this.dateProvider = new DayjsDateProvider();
+  }
+
+  async findPublic(): Promise<Article[]> {
+
+    return this.articles.filter((article) => this.dateProvider.isInPast(article.published_at as Date));
   }
 
   async findByAuthorId(author: string): Promise<Article | null> {

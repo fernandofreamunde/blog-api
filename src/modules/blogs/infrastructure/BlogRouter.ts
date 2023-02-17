@@ -7,7 +7,7 @@ import { UpdateArticleController } from "../useCases/updateArticle/UpdateArticle
 import { UpdateBlogController } from "../useCases/updateBlog/UpdateBlogController";
 import { DeleteArticleController } from "../useCases/deleteArticle/DeleteArticleController";
 import { ReadArticleController } from "../useCases/readArticle/ReadArticleController";
-import { listPublicArticlesController } from "../useCases/listPublicArticles/listPublicArticlesController";
+import { ListPublicArticlesController } from "../useCases/listPublicArticles/ListPublicArticlesController";
 
 const blogRouter = Router();
 
@@ -19,7 +19,7 @@ const createArticleController = new CreateArticleController();
 const updateArticleController = new UpdateArticleController();
 const deleteArticleController = new DeleteArticleController();
 const readArticleController = new ReadArticleController();
-const listPublicArticles = new listPublicArticlesController();
+const listPublicArticles = new ListPublicArticlesController();
 
 blogRouter.post('/blogs', Auth, createBlogController.handle);
 blogRouter.patch('/blogs/:id', Auth, updateBlogController.handle);
@@ -32,4 +32,3 @@ blogRouter.get('/articles/:id', readArticleController.handle);
 blogRouter.get('/articles', listPublicArticles.handle);
 
 export { blogRouter };
-

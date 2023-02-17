@@ -1,7 +1,7 @@
-import { IArticleRepository } from "../../../../modules/blogs/contracts/IArticleRepository";
-import { ListPublicArticlesUseCase } from "./listPublicArticlesUseCase";
-import { MockArticleRepository } from "../../../../modules/blogs/infrastructure/MockArticleRepository";
-import makeArticle from "../../../../modules/blogs/factory/ArticleFactory";
+import { IArticleRepository } from "../../contracts/IArticleRepository";
+import { ListPublicArticlesUseCase } from "./ListPublicArticlesUseCase";
+import { MockArticleRepository } from "../../infrastructure/MockArticleRepository";
+import makeArticle from "../../factory/ArticleFactory";
 import { DayjsDateProvider } from "../../../../core/providers/date/DayJsProvider";
 
 let repo: IArticleRepository;
@@ -28,3 +28,5 @@ describe("List Public Artcles test", () => {
   });
 
 });
+// Todo rename the files on list Publish articles
+// ! make the read all articles

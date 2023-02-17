@@ -1,5 +1,5 @@
 import { Article } from "@prisma/client";
-import { IArticleRepository } from "../../../../modules/blogs/contracts/IArticleRepository";
+import { IArticleRepository } from "../../contracts/IArticleRepository";
 
 class ListPublicArticlesUseCase {
 

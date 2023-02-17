@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { ListPublicArticlesUseCase } from "./listPublicArticlesUseCase";
-import { ArticleRepository } from "../../../../modules/blogs/infrastructure/ArticleRepository";
+import { ListPublicArticlesUseCase } from "./ListPublicArticlesUseCase";
+import { ArticleRepository } from "../../infrastructure/ArticleRepository";
 
-class listPublicArticlesController {
+class ListPublicArticlesController {
   async handle(request: Request, response: Response): Promise<Response<any, Record<string, any>>> {
 
     // replace this with tsrynge container to get UseCase instance
@@ -14,4 +14,4 @@ class listPublicArticlesController {
   }
 }
 
-export { listPublicArticlesController };
+export { ListPublicArticlesController };

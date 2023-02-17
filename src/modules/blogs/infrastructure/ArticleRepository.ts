@@ -10,6 +10,21 @@ class ArticleRepository implements IArticleRepository {
     this.prisma = new PrismaClient();
   }
 
+  async findPublic(): Promise<Article[]> {
+
+    return await this.prisma.article.findMany({
+      where: {
+        published_at: {
+          lte: new Date(),
+        }
+      }
+    });
+  }
+
+  async findAll(): Promise<Article[]> {
+    return await this.prisma.article.findMany();
+  }
+
   async findByAuthorId(author: string): Promise<Article | null> {
     return await this.prisma.article.findFirst({
       where: {
@@ -42,16 +57,16 @@ class ArticleRepository implements IArticleRepository {
     });
   }
 
-  async update({ id, title, body, author, published_at, blog}: Article): Promise<Article> {
+  async update({ id, title, body, author, published_at, blog }: Article): Promise<Article> {
     const updated_at = new Date();
     const json = body as Prisma.JsonArray;
 
     return await this.prisma.article.update({
       data: {
-        title, 
-        body: json, 
-        author, 
-        published_at, 
+        title,
+        body: json,
+        author,
+        published_at,
         blog
       },
       where: {
@@ -63,7 +78,7 @@ class ArticleRepository implements IArticleRepository {
   async delete(article: Article): Promise<void> {
 
     await this.prisma.article.delete({
-      where:{
+      where: {
         id: article.id
       }
     });

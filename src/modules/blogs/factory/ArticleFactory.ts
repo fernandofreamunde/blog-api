@@ -15,7 +15,7 @@ interface IMakeBlog {
   repo: IArticleRepository;
 }
 
-export default async function makeArticle({data, repo}:IMakeBlog): Promise<Article> {
+export default async function makeArticle({ data, repo }: IMakeBlog): Promise<Article> {
   const { title, body, published_at, author, blog } = data;
 
   const article = await repo.create({
@@ -30,7 +30,7 @@ export default async function makeArticle({data, repo}:IMakeBlog): Promise<Artic
   return article;
 }
 
-function fakeBodyWithNParagraphs(n: Number) {
+function fakeBodyWithNParagraphs(n: number) {
   const body = [];
 
   for (let index = 0; index < n; index++) {
@@ -47,6 +47,6 @@ function fakeBodyWithNParagraphs(n: Number) {
       ]
     });
   }
-    
+
   return body;
 }

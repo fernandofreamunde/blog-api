@@ -3,6 +3,7 @@ import { IArticleCreationDto } from "./IArticleCreationDto";
 
 interface IArticleRepository {
   findPublic(): Promise<Article[]>;
+  findAll(): Promise<Article[]>;
   findById(id: string): Promise<Article | null>;
   findByAuthorId(author: string): Promise<Article | null>;
   create(article: IArticleCreationDto): Promise<Article>;

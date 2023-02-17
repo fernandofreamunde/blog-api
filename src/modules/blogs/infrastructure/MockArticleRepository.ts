@@ -16,8 +16,11 @@ class MockArticleRepository implements IArticleRepository {
   }
 
   async findPublic(): Promise<Article[]> {
-
     return this.articles.filter((article) => this.dateProvider.isInPast(article.published_at as Date));
+  }
+
+  async findAll(): Promise<Article[]> {
+    return this.articles;
   }
 
   async findByAuthorId(author: string): Promise<Article | null> {

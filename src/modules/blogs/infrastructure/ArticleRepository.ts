@@ -21,6 +21,10 @@ class ArticleRepository implements IArticleRepository {
     });
   }
 
+  async findAll(): Promise<Article[]> {
+    return await this.prisma.article.findMany();
+  }
+
   async findByAuthorId(author: string): Promise<Article | null> {
     return await this.prisma.article.findFirst({
       where: {

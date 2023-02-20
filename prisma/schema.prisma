@@ -73,14 +73,15 @@ model Article {
 }
 
 model Card {
-  id          String   @id @default(uuid())
-  name        String
-  description String
-  type        String
-  data        Json
-  created_at  DateTime @default(now())
-  updated_at  DateTime
-  blog        String
+  id           String    @id @default(uuid())
+  name         String
+  description  String
+  type         String
+  data         Json
+  created_at   DateTime  @default(now())
+  updated_at   DateTime
+  published_at DateTime?
+  blog         String
 
   blog_id Blog @relation(fields: [blog], references: [id])
 

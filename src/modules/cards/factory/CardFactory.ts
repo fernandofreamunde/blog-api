@@ -29,7 +29,7 @@ export default async function makeCard({ objectData, repo }: IMakeCard): Promise
     name: name ?? faker.company.name(),
     type: type ?? faker.lorem.word(),
     data: data ?? { message: faker.lorem.sentence() },
-    blog_id: blog_id ?? `fake-blog-uuid-${faker.random.numeric(4)}`
+    blog: blog_id ?? `fake-blog-uuid-${faker.random.numeric(4)}`
   }) as Card;
 
   return card;

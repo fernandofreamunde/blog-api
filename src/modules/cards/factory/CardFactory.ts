@@ -8,6 +8,7 @@ interface ICardSeed {
   type?: string;
   data?: object;
   blog_id?: string;
+  published_at?: Date;
 }
 
 interface IMakeCard {
@@ -21,7 +22,8 @@ export default async function makeCard({ objectData, repo }: IMakeCard): Promise
     description,
     type,
     data,
-    blog_id
+    blog_id,
+    published_at
   } = objectData;
 
   const card = await repo.create({
@@ -29,6 +31,7 @@ export default async function makeCard({ objectData, repo }: IMakeCard): Promise
     name: name ?? faker.company.name(),
     type: type ?? faker.lorem.word(),
     data: data ?? { message: faker.lorem.sentence() },
+    published_at: published_at ?? null,
     blog: blog_id ?? `fake-blog-uuid-${faker.random.numeric(4)}`
   }) as Card;
 

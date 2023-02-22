@@ -50,7 +50,8 @@ model Blog {
   updated_at  DateTime
   Articles    Article[]
 
-  user User @relation(fields: [owner], references: [id])
+  user User   @relation(fields: [owner], references: [id])
+  Card Card[]
 
   @@map("blogs")
 }
@@ -67,4 +68,22 @@ model Article {
 
   author_id User @relation(fields: [author], references: [id])
   blog_id   Blog @relation(fields: [blog], references: [id])
+
+  @@map("articles")
+}
+
+model Card {
+  id           String    @id @default(uuid())
+  name         String
+  description  String
+  type         String
+  data         Json
+  created_at   DateTime  @default(now())
+  updated_at   DateTime
+  published_at DateTime?
+  blog         String
+
+  blog_id Blog @relation(fields: [blog], references: [id])
+
+  @@map("cards")
 }
